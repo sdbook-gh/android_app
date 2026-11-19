@@ -1,0 +1,19 @@
+{
+  "migrated_version": "3.0.0",
+  "finalized": false,
+  "appliedAt": "2026-11-18T08:54:53.439Z",
+  "log": [
+    {
+      "action": "skipped:missing",
+      "from": "/mnt/d/personal/github/Development/android/app/mobile_data_notifier/.unipi/config/compactor.json"
+    },
+    {
+      "action": "skipped:missing",
+      "from": "/mnt/d/personal/github/Development/android/app/mobile_data_notifier/.unipi/fusion-preset.json"
+    },
+    {
+      "action": "skipped:missing",
+      "from": "/mnt/d/personal/github/Development/android/app/mobile_data_notifier/.unipi/config/background-tasks.json"
+    }
+  ]
+}

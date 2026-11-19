@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/overlay_bg"
+    android:padding="6dp">
+
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/overlay_text"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:includeFontPadding="false" />
+
+    <TextView
+        android:id="@+id/tv_usage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/overlay_text"
+        android:textSize="10sp"
+        android:layout_marginTop="2dp"
+        android:includeFontPadding="false" />
+
+    <!-- 悬浮窗「查询流量」结果行：默认隐藏，查询期间显示已用/剩余，超时后恢复 tv_usage -->
+    <TextView
+        android:id="@+id/tv_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/overlay_text"
+        android:textSize="10sp"
+        android:layout_marginTop="2dp"
+        android:includeFontPadding="false"
+        android:visibility="gone" />
+
+    <!-- 关闭流量按钮：已隐藏，功能迁移到长按菜单
+    <Button
+        android:id="@+id/btn_close_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/overlay_close_data"
+        android:textSize="10sp"
+        android:textColor="@color/overlay_text"
+        android:background="@drawable/overlay_btn_bg"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:layout_marginTop="4dp" />
+    -->
+
+</LinearLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  余量会话保活：蜂窝网络下的运营商免登依赖 http://app.10086.cn/biz-sso/autoLogin/gateWayLogin
+  （复刻 H5 页面的 <img> 免登，运营商会按 SIM 识别，无需短信）。
+
+  该请求是明文 HTTP；targetSdk 28+ 默认禁止明文，会被 WebView 直接拦成
+  ERR_CLEARTEXT_NOT_PERMITTED，导致自动免登永远失败（实测 77/77 次失败）。
+
+  因此只对 app.10086.cn 放行明文，其余域名保持系统默认（禁止明文），
+  不做全局 usesCleartextTraffic 放开。
+-->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">app.10086.cn</domain>
+    </domain-config>
+</network-security-config>

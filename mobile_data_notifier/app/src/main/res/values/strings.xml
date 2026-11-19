@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">移动数据通知器</string>
+
+    <!-- 主界面 -->
+    <string name="status_title">当前状态</string>
+    <string name="data_state_on">移动数据：已开启</string>
+    <string name="data_state_off">移动数据：已关闭</string>
+    <string name="data_state_unknown">移动数据：未知</string>
+    <string name="traffic_scope_title">统计范围</string>
+    <string name="traffic_scope_mobile">移动</string>
+    <string name="traffic_scope_wifi">WiFi</string>
+    <string name="traffic_scope_all">全部</string>
+    <string name="usage_since_boot">开机以来：--</string>
+    <string name="usage_since_boot_fmt">开机以来（%1$s）：%2$s</string>
+    <string name="usage_this_session">本次统计：--</string>
+    <string name="usage_cumulative">累计流量：0 B</string>
+    <string name="usage_cumulative_fmt">累计流量：%1$s</string>
+    <string name="edit_cumulative">修改累计流量</string>
+    <string name="reset_cumulative">重置累计流量</string>
+    <string name="edit_cumulative_hint">输入流量，单位可省（字节），或带 m/M、k/K、g/G，例如 1048576、1m、1.5m、2.3g</string>
+    <string name="reset_usage">重置流量统计</string>
+
+    <string name="overlay_title">悬浮窗</string>
+    <string name="show_overlay">显示悬浮窗</string>
+    <string name="hide_overlay">隐藏悬浮窗</string>
+    <string name="grant_overlay">授予悬浮窗权限</string>
+    <string name="start_service">启动保活服务</string>
+    <string name="stop_service">停止保活服务</string>
+    <string name="service_state_on_full">保活服务：已开启（悬浮窗 + 守护进程运行中）</string>
+    <string name="service_state_on_overlay_only">保活服务：已开启（悬浮窗运行中，守护进程恢复中）</string>
+    <string name="service_state_on_not_running">保活服务：已开启（进程未运行，稍候自动拉起）</string>
+    <string name="service_state_off">保活服务：已停止（点上方“启动保活服务”或重新打开本应用恢复）</string>
+
+    <string name="keepalive_title">保活</string>
+    <string name="battery_whitelist">加入电池优化白名单</string>
+    <string name="keepalive_hint">ColorOS「清除全部」会强杀未锁定的应用。请先在最近任务里下拉锁定本应用，并打开自启动、后台运行、后台弹出界面。</string>
+    <string name="open_autostart">打开自启动设置</string>
+    <string name="open_background">打开后台运行设置</string>
+    <string name="open_bg_popup">打开后台弹出界面</string>
+
+    <string name="schedule_title">定时关闭</string>
+    <string name="schedule_note">说明：本机未 Root，系统不允许 App 直接开关移动数据。\n到点时将弹出带声音与震动的提醒通知，您可在通知里点\"关闭数据\"跳转设置页手动关闭。</string>
+    <string name="add_period">+ 添加时段</string>
+    <string name="period_start">开始</string>
+    <string name="period_end">结束</string>
+    <string name="delete">删除</string>
+    <string name="no_periods">尚未添加任何时段</string>
+
+    <!-- 悬浮窗 -->
+    <string name="overlay_data_on">数据开启</string>
+    <string name="overlay_data_off">数据关闭</string>
+    <string name="overlay_traffic_fmt">%1$s %2$s</string>
+    <string name="overlay_close_data">关闭流量</string>
+    <string name="overlay_query_margin">查询流量</string>
+    <string name="margin_overlay_failed">查询失败，点此查看</string>
+    <string name="overlay_stop_warning">停止警告</string>
+    <string name="choose_warning_music">选择警告音乐</string>
+    <string name="warning_music_set">已设置警告音乐</string>
+    <string name="warning_music_cleared">已恢复默认警告音乐</string>
+
+    <!-- 通知 -->
+    <string name="channel_fg_name">保活服务</string>
+    <string name="channel_fg_desc">保持悬浮窗与数据监控运行（静音）</string>
+    <string name="channel_reminder_name">定时提醒</string>
+    <string name="channel_reminder_desc">到点提醒关闭/开启移动数据（带声音与震动）</string>
+    <string name="fg_notification_title">移动数据通知器运行中</string>
+    <string name="fg_notification_text">悬浮窗与流量监控已开启</string>
+    <string name="reminder_close_title">到关闭时间，请关闭移动数据</string>
+    <string name="reminder_close_text">点击\"关闭数据\"跳转设置页手动关闭</string>
+    <string name="reminder_open_title">到开启时间</string>
+    <string name="reminder_open_text">如需要，可重新开启移动数据</string>
+    <string name="action_close_data">关闭数据</string>
+    <string name="action_open_settings">打开设置</string>
+    <string name="action_show_overlay">显示悬浮窗</string>
+
+    <!-- 权限/提示 -->
+    <string name="perm_overlay_rationale">需要在屏幕顶部显示悬浮窗，请授予\"显示在其他应用上层\"权限。</string>
+    <string name="perm_phone_rationale">需要读取移动数据开关状态，请授予电话权限。</string>
+    <string name="perm_notif_rationale">需要发送提醒通知，请允许通知权限。</string>
+
+    <!-- 使用情况访问权限 -->
+    <string name="usage_access_title">使用情况访问权限</string>
+    <string name="usage_access_granted">使用情况访问权限：已授权 ✓</string>
+    <string name="usage_access_denied">使用情况访问权限：未授权（点击设置）</string>
+    <string name="usage_access_hint">需要此权限才能读取移动网络流量。ColorOS：设置 → 隐私 → 权限隐私 / 其他权限 → 使用情况访问；列表里搜「移动数据通知器」。</string>
+    <string name="usage_access_open_toast">请在列表中搜索「移动数据通知器」。若没有，请先覆盖安装本版本后再打开该页。</string>
+
+    <!-- WLAN 助理监控 -->
+    <string name="wlan_section_title">WLAN 助理</string>
+    <string name="wlan_banner_on">「智能切换移动数据」已开启。Wi-Fi 变差时系统会自动打开移动数据开关。第三方 App 不能直接关掉，请点「去关闭」在系统页手动关。</string>
+    <string name="wlan_banner_off">「智能切换移动数据」已关闭。系统不会因 Wi-Fi 质量自动打开移动数据（仍可能被你手动打开）。双通道开着不会单独拨数据开关。</string>
+    <string name="wlan_flag_close">去关闭</string>
+    <string name="wlan_flag_state_on">开</string>
+    <string name="wlan_flag_state_off">关</string>
+    <string name="wlan_flag_title_fmt">%1$s：%2$s</string>
+    <string name="overlay_assistant_on">智能切换开</string>
+    <string name="wlan_open_page_failed">无法打开对应设置页，请到设置里搜索 WLAN 助理或双通道</string>
+
+    <string name="wlan_flag_auto_mobile">智能切换移动数据</string>
+    <string name="wlan_flag_auto_mobile_detail">Wi-Fi 质量差时，系统会打开移动数据开关作为上网通道。这是本机「数据开关自己打开」最常见的原因。悬浮窗只对这一项闪动。</string>
+    <string name="wlan_flag_sla">双通道网络加速</string>
+    <string name="wlan_flag_sla_detail">Wi-Fi 与移动数据同时使用。不单独拨「移动数据」总开关；第三方无法直接关闭。</string>
+
+    <!-- 数据开关记录（内存，不落盘） -->
+    <string name="data_log_title">数据开关记录</string>
+    <string name="data_log_hint">记录开关变化时的前台应用，不是系统告知的拨开关方。保活服务需在运行。进程被杀后清空。</string>
+    <string name="data_log_empty">暂无记录。打开或关闭移动数据后会出现在这里。</string>
+    <string name="data_log_clear">清空记录</string>
+    <string name="data_log_cleared">记录已清空</string>
+    <string name="data_log_opened">打开</string>
+    <string name="data_log_closed">关闭</string>
+    <string name="data_log_line_fmt">%1$s  %2$s</string>
+    <string name="data_log_fg_fmt">关联前台：%1$s</string>
+    <string name="data_log_system_ui">关联前台：系统界面</string>
+    <string name="data_log_no_usage">未授权使用情况访问，无法读取前台应用</string>
+    <string name="data_log_unknown_app">关联前台：未知</string>
+    <!-- 余量查询（内嵌 WebView） -->
+    <string name="margin_query_title">余量查询</string>
+    <string name="margin_query_desc">打开中国移动余量查询页面（H5），首次使用需登录。查询流量、语音、短信等套餐余量。</string>
+    <string name="margin_query_open">打开余量查询</string>
+    <string name="margin_used_label">已用：%1$s</string>
+    <string name="margin_remain_label">剩余：%1$s</string>
+    <string name="margin_not_fetched">尚未获取余量</string>
+    <string name="margin_fetch_pending">已获取（待解析）</string>
+    <string name="margin_stale">余量数据已过期，请重新打开余量查询登录</string>
+    <string name="margin_query_back">返回</string>
+    <string name="margin_query_refresh">刷新</string>
+    <string name="margin_query_net_error">页面加载失败，请检查网络后重试</string>
+    <string name="margin_refresh_state_off">自动刷新：关闭</string>
+    <string name="margin_refresh_state_fmt">自动刷新：每 %1$d 秒</string>
+    <string name="margin_refreshing_suffix">刷新中…</string>
+    <string name="margin_refresh_now">立即刷新</string>
+    <string name="margin_refresh_interval">刷新间隔</string>
+    <string name="overlay_margin_duration_title">悬浮窗余量显示时长</string>
+    <string name="overlay_margin_duration_msg">输入悬浮窗「查询流量」结果的显示时长（秒）。最少 %1$d 秒，最多 %2$d 秒；输入 0 表示一直显示（不自动恢复）。</string>
+    <string name="overlay_margin_duration_set_fmt">悬浮窗余量显示时长已设为 %1$d 秒</string>
+    <string name="overlay_margin_duration_min_fmt">时长太短，已按最小 %1$d 秒设置</string>
+    <string name="overlay_margin_duration_forever">悬浮窗余量显示时长已设为一直显示</string>
+    <string name="margin_refresh_interval_msg">输入自动刷新间隔（秒），最少 %1$d 秒（避免频繁请求移动接口）；输入 0 表示关闭自动刷新，仍可点「立即刷新」。</string>
+    <string name="margin_refresh_min_fmt">间隔太短，已按最小 %1$d 秒设置</string>
+    <string name="margin_refresh_on_fmt">已开启自动刷新：每 %1$d 秒</string>
+    <string name="margin_refresh_off_toast">已关闭自动刷新</string>
+    <string name="margin_refresh_busy">正在刷新，请稍候</string>
+    <string name="margin_refresh_ok">余量已更新</string>
+    <string name="margin_refresh_pending">已刷新（待解析）</string>
+    <string name="margin_refresh_failed">刷新失败，登录态可能已失效，请打开余量查询页重新登录</string>
+    <string name="margin_refresh_timeout">刷新超时，请检查网络或登录态</string>
+    <!-- 后台会话保活 + 自动重登 -->
+    <string name="margin_keepalive_btn_fmt">保活间隔：%1$d 秒</string>
+    <string name="margin_keepalive_btn_off">保活间隔：关</string>
+    <string name="margin_keepalive_title">后台保活间隔</string>
+    <string name="margin_keepalive_msg">输入后台保活刷新间隔（秒），最少 %1$d 秒，最多 %2$d 秒；输入 0 表示关闭。开启后后台定期刷新余量页保持登录；会话过期时蜂窝网络自动免登、WiFi 走 SSO 静默重登，失败会发通知提醒。</string>
+    <string name="margin_keepalive_min_fmt">间隔太短，已按最小 %1$d 秒设置</string>
+    <string name="margin_keepalive_on_fmt">已开启后台保活：每 %1$d 秒</string>
+    <string name="margin_keepalive_off_toast">已关闭后台保活</string>
+    <string name="margin_keepalive_notify_channel">余量登录提醒</string>
+    <string name="margin_keepalive_notify_title">余量查询需要重新登录</string>
+    <string name="margin_keepalive_notify_text">自动重登失败（需短信验证码），点击打开余量查询页登录</string>
+    <string name="margin_keepalive_notify_text_manual">自动重登已连续失败，会话已失效，点击打开余量查询页重新登录</string>
+    <string name="margin_keepalive_log_title">保活记录（最近 200 行）</string>
+</resources>

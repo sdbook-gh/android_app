@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mobiledatanotifier"
+    android:compileSdkVersion="35"
+    android:compileSdkVersionCodename="15">
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="34" />
+
+    <!-- 读取移动数据开关状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 监听网络连接变化 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 悬浮窗（屏幕顶部提示） -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 开机自启 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 前台服务（保活） -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- 前台服务类型：specialUse（Android 14+） -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- 前台服务类型：mediaPlayback（音量调节后台生效） -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <!-- 通知（Android 13+） -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- 请求加入电池优化白名单（保活） -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- 精确闹钟（定时提醒） -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <!-- 闹钟唤醒 -->
+    <!-- 余量查询 WebView 加载远程 H5 页面 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- 使用情况访问：系统「使用情况访问」列表只显示声明了此权限的应用 -->
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <!-- 解析并打开 OPPO SIM 设置页、ColorOS 自启动/后台页（Android 11+ 包可见性） -->
+    <queries>
+        <package android:name="com.android.phone" />
+        <intent>
+            <action android:name="android.settings.NETWORK_OPERATOR_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.MANAGE_ALL_SIM_PROFILES_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.GEMINI_MANAGEMENT" />
+        </intent>
+        <intent>
+            <action android:name="com.android.settings.MULTI_SIM_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.USAGE_ACCESS_SETTINGS" />
+        </intent>
+        <package android:name="com.android.settings" />
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <package android:name="com.oplus.wirelesssettings" />
+        <intent>
+            <action android:name="wireless.settings.WLAN_ASSISTANT_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="wireless.settings.SLA_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.WIFI_ADVANCED_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.WIFI_SETTINGS" />
+        </intent>
+        <package android:name="com.oplus.safecenter" />
+        <package android:name="com.coloros.safecenter" />
+        <package android:name="com.oplus.battery" />
+        <package android:name="com.coloros.oppoguardelf" />
+        <package android:name="com.oplusos.startup" />
+        <package android:name="com.coloros.phonemanager" />
+    </queries>
+
+    <application
+        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:theme="@style/Theme.MobileDataNotifier"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:allowBackup="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MarginQueryActivity"
+            android:exported="false" />
+
+        <!-- 保活前台服务 + 悬浮窗 -->
+        <service
+            android:name=".OverlayService"
+            android:exported="false"
+            android:stopWithTask="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="continuous_mobile_data_usage_overlay_monitoring" />
+        </service>
+
+        <!-- 音量调节期间临时占用的媒体前台服务（mediaPlayback）-->
+        <!-- 使应用处于“有效音频生命周期”，后台 setStreamVolume 不被 ColorOS 拦截 -->
+        <service
+            android:name=".VolumeMediaService"
+            android:exported="false"
+            android:foregroundServiceType="mediaPlayback" />
+
+        <!-- 兜底保活：JobScheduler 周期心跳，服务被杀后自动拉起 -->
+        <service
+            android:name=".KeepAliveJob"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- 开机自启 -->
+        <receiver
+            android:name=".BootReceiver"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 多广播监听兜底：借系统广播机会检查并拉起服务 -->
+        <receiver
+            android:name=".MultiBroadcastReceiver"
+            android:exported="false">
+            <intent-filter android:priority="1000">
+                <!-- 仅保留 Android 8.0+ 仍允许静态注册接收的系统广播；
+                     SCREEN_ON/OFF、USER_PRESENT、TIME_TICK 等已改为
+                     OverlayService 内动态注册 -->
+                <action android:name="android.intent.action.BATTERY_LOW" />
+                <action android:name="android.intent.action.BATTERY_OKAY" />
+                <action android:name="android.intent.action.POWER_CONNECTED" />
+                <action android:name="com.example.mobiledatanotifier.KEEP_ALIVE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 第二前台服务：独立 :guard 进程，主进程被杀时仍可拉回悬浮窗 -->
+        <service
+            android:name=".GuardService"
+            android:exported="false"
+            android:process=":guard"
+            android:stopWithTask="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="secondary_keepalive_guard" />
+        </service>
+
+        <!-- 第二道兜底：独立 JobService，与 KeepAliveJob 互为双保险 -->
+        <service
+            android:name=".WatchdogJob"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <!-- 定时提醒接收器 -->
+        <receiver
+            android:name=".ScheduleReceiver"
+            android:exported="false"
+            android:enabled="true" />
+
+    </application>
+
+</manifest>
